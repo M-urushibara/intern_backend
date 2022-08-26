@@ -1,0 +1,41 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+
+model User {
+  id    Int     @id @default(autoincrement())
+  name  String? @unique
+  password String   // `email` can not be optional because it's the only unique field on the model
+
+}
+
+model Article {
+  id                  Int                 @id @default(autoincrement())
+  product_image        String?            @unique
+  created_at          DateTime            @default(now())
+  article_categories    Article_category[]
+}
+
+model Article_category {
+  article_id          Int  
+  category_id         Int 
+  article             Article?             @relation(fields: [article_id], references: [id])
+  category            M_category?          @relation(fields: [category_id],references: [id])
+  @@id([article_id,  category_id])
+}
+
+model M_category {
+  id                  Int                  @id @default(autoincrement())
+  parent_id           Int?
+  category_name       String               @unique
+  articles    Article_category[]
+}
