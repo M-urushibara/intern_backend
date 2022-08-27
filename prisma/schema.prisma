@@ -20,9 +20,16 @@ model User {
 
 model Article {
   id                  Int                 @id @default(autoincrement())
-  product_image        String?            @unique
+  product_image_path  String              @unique
   created_at          DateTime            @default(now())
   article_categories    Article_category[]
+}
+
+model M_category {
+  id                  Int                  @id @default(autoincrement())
+  parent_id           Int?
+  category_name       String               @unique
+  articles    Article_category[]
 }
 
 model Article_category {
@@ -33,9 +40,4 @@ model Article_category {
   @@id([article_id,  category_id])
 }
 
-model M_category {
-  id                  Int                  @id @default(autoincrement())
-  parent_id           Int?
-  category_name       String               @unique
-  articles    Article_category[]
-}
+

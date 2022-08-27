@@ -3,8 +3,14 @@ import ArticleRepository from '../repositories/article'
 
 const findArticles = async (category:string) => {
     const articleRepository = new ArticleRepository();
-    const articles = articleRepository.find(category);
-    return await articles;
+    if (category == 'recommend'){
+        const recommendArticles = await articleRepository.findRecommend();
+        return recommendArticles
+    }
+    const articles = await articleRepository.findCategoryRecommend(category);
+    return  articles;
 }
+
+
 
 export { findArticles }

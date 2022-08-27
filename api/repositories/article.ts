@@ -4,21 +4,44 @@ const prisma = new PrismaClient();
 
 export default class ArticleRepository{
 
-    async find(category: string){
-        const article = await prisma.Article_category.findMany({
-            include: { category: true, article: true},
-            where: {
-                category_name: category
+    async findRecommend(){
+        const article = await prisma.article.findMany({
+            orderBy:{
+                created_at: "desc",
             },
+            take:10,
             select: {
-				product_imag_path: true,
-                article_id: true,
-			}
-         });
-         }
+                id: true,
+                product_image_path: true,
+                created_at: true,
+            },
+        });
+        return article;
+    } 
 
-
-        
+    async findCategoryRecommend(category: string){
+        const article = await prisma.article.findMany({
+            where: {
+                article_categories: {
+                    some:{
+                        category:{
+                            category_name: category,
+                        },
+                    },
+                },
+            },
+            orderBy:{
+                created_at: "desc",
+            },
+            take:10,
+            select: {
+                id: true,
+                product_image_path: true,
+                created_at: true,
+            },
+        });
+        return article;
+    }
     };
 
 
