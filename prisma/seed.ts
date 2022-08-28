@@ -51,9 +51,9 @@ async function main() {
                         category: {
                             connect: {
                                 category_name: 'ブルーベース',
-                            }
-                        }
-                    }
+                            },
+                        },
+                    },
                 ],
             },
         },
@@ -268,29 +268,26 @@ async function main() {
         },
     }); 
 
-    // const article11 = await prisma.article.create({
-    //     data:{
-    //         product_image_path: 'IMG_3289.jpg',
-
-    //         article_categories: {
-    //             create: [
-    //                 {
-    //                     category: {
-    //                         connect: {
-    //                             category_name: 'イエローベース',
-    //                         }
-    //                     }
-    //                 }
-    //             ],
-    //         },
-    //     },
-    // }); 
-
-
-
-
-
-
+    const article11 = await prisma.article.create({
+        data:{
+            product_image_path: 'B424328-SCE009-01.jpg',
+            product_name: 'シグニチャー カラー アイズ',
+            product_price: 7700,
+            official_link:'https://onlineshop.suqqu.com/ja/%E3%81%99%E3%81%B9%E3%81%A6%E3%81%AE%E3%82%AB%E3%83%86%E3%82%B4%E3%83%AA%E3%83%BC/%E3%82%AB%E3%83%A9%E3%83%BC%E3%83%A1%E3%82%A4%E3%82%AF%E3%82%A2%E3%83%83%E3%83%97/%E3%82%A2%E3%82%A4%E3%82%BA/%E3%82%B7%E3%82%B0%E3%83%8B%E3%83%81%E3%83%A3%E3%83%BC-%E3%82%AB%E3%83%A9%E3%83%BC-%E3%82%A2%E3%82%A4%E3%82%BA-%EF%BC%882022-%E7%A7%8B%E5%86%AC-%E3%82%AB%E3%83%A9%E3%83%BC%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%EF%BC%89/p/424328',
+            product_explain_text: '色彩豊かな秋の情景をパレットに。 コクのある発色、豊かな輝きで目元を染める。 朝夕の風に秋の深まりを感じる頃、山肌は燦爛と輝き出す。 鮮やかな色彩に染め上げられた秋の風景を上質な質感と光、深いコクのある色で表現。 SUQQUのアイシャドウ パレットがドラマティックに秋を彩ります。',
+            article_categories: {
+                create: [
+                    {
+                        category: {
+                            connect: {
+                                category_name: 'イエローベース',
+                            }
+                        }
+                    }
+                ],
+            },
+        },
+    }); 
 }
 
 

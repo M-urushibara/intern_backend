@@ -33,16 +33,8 @@ CREATE TABLE "Article_category" (
     CONSTRAINT "Article_category_category_id_fkey" FOREIGN KEY ("category_id") REFERENCES "M_category" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
--- CreateTable
-CREATE TABLE "Product" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT
-);
-
 -- CreateIndex
 CREATE UNIQUE INDEX "User_name_key" ON "User"("name");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Article_product_image_path_key" ON "Article"("product_image_path");
-
--- CreateIndex
-CREATE UNIQUE INDEX "M_category_category_name_key" ON "M_category"("category_name");

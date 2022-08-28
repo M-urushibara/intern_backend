@@ -31,7 +31,7 @@ model Article {
 }
 
 model M_category {
-  id                    Int                  @id @default(autoincrement())
+  id                    Int                  @id @default(autoincrement()) @unique
   parent_id             Int?
   category_name         String               @unique
   articles              Article_category[]
@@ -45,8 +45,4 @@ model Article_category {
   @@id([article_id,  category_id])
 }
 
-model Product {
-  id                  Int                 @id @default(autoincrement())
-
-}
 
