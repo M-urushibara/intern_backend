@@ -11,16 +11,20 @@ export default class ArticleRepository{
             },
             take:10,
             select: {
-                id: true,
                 product_image_path: true,
                 created_at: true,
+                article_categories:{
+                    select:{
+                        article_id: true,
+                    },
+                },
             },
         });
         return article;
-    } 
+    }; 
 
     async findCategoryRecommend(category: string){
-        const article = await prisma.article.findMany({
+        const articles = await prisma.article.findMany({
             where: {
                 article_categories: {
                     some:{
@@ -35,13 +39,36 @@ export default class ArticleRepository{
             },
             take:10,
             select: {
-                id: true,
                 product_image_path: true,
                 created_at: true,
+                article_categories:{
+                    select:{
+                        article_id: true,
+                    },
+                },
             },
         });
-        return article;
-    }
+        return articles;
     };
+
+    async findArticle(id: number){
+        const article = await prisma.article.findUnique({
+            where: {
+                id: id,
+            },
+            select:{
+                product_name: true,
+                product_price: true,
+                product_image_path: true,
+                official_link: true,
+                product_explain_text: true,
+            },
+        });
+        console.log(article)
+        return article;
+    };
+
+
+};
 
 

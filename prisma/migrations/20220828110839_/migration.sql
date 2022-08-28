@@ -9,7 +9,11 @@ CREATE TABLE "User" (
 CREATE TABLE "Article" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "product_image_path" TEXT NOT NULL,
-    "created_at" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+    "created_at" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "product_name" TEXT NOT NULL,
+    "product_price" INTEGER NOT NULL,
+    "official_link" TEXT NOT NULL,
+    "product_explain_text" TEXT NOT NULL
 );
 
 -- CreateTable
@@ -27,6 +31,11 @@ CREATE TABLE "Article_category" (
     PRIMARY KEY ("article_id", "category_id"),
     CONSTRAINT "Article_category_article_id_fkey" FOREIGN KEY ("article_id") REFERENCES "Article" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT "Article_category_category_id_fkey" FOREIGN KEY ("category_id") REFERENCES "M_category" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+-- CreateTable
+CREATE TABLE "Product" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT
 );
 
 -- CreateIndex

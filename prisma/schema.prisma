@@ -19,25 +19,34 @@ model User {
 }
 
 model Article {
-  id                  Int                 @id @default(autoincrement())
-  product_image_path  String              @unique
-  created_at          DateTime            @default(now())
+  id                    Int                 @id @default(autoincrement())
+  product_image_path    String              @unique
+  created_at            DateTime            @default(now())
+  product_name          String
+  product_price         Int
+  official_link         String
+  product_explain_text  String
   article_categories    Article_category[]
+
 }
 
 model M_category {
-  id                  Int                  @id @default(autoincrement())
-  parent_id           Int?
-  category_name       String               @unique
-  articles    Article_category[]
+  id                    Int                  @id @default(autoincrement())
+  parent_id             Int?
+  category_name         String               @unique
+  articles              Article_category[]
 }
 
 model Article_category {
-  article_id          Int  
-  category_id         Int 
-  article             Article?             @relation(fields: [article_id], references: [id])
-  category            M_category?          @relation(fields: [category_id],references: [id])
+  article_id            Int  
+  category_id           Int 
+  article               Article?             @relation(fields: [article_id], references: [id])
+  category              M_category?          @relation(fields: [category_id],references: [id])
   @@id([article_id,  category_id])
 }
 
+model Product {
+  id                  Int                 @id @default(autoincrement())
+
+}
 
