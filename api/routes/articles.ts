@@ -8,7 +8,7 @@ router.get(
     '/timeline/:category',
     async (req:Request, res:Response) => {
         const recommendArticles = await findArticles(req.params.category);
-        res.status(200).json(recommendArticles)
+        res.json(recommendArticles)
     }
 );
 
@@ -16,7 +16,6 @@ router.get(
 router.get(
     '/:id',
     async (req:Request, res:Response) => {
-        console.log("a")
         const article = await findArticle(req.params.id);
         res.json(article)
     }

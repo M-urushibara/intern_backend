@@ -64,7 +64,6 @@ export default class ArticleRepository{
                 product_explain_text: true,
             },
         });
-        console.log(article)
         return article;
     };
 
