@@ -12,8 +12,6 @@ app.use(cors({
     optionsSuccessStatus: 200 //レスポンスstatusを200に設定
 }));
 
-
-
 app.use('/articles', articleRoutes);
 
 

@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express';
-import { findrecommendArticles, findArticle, findArticles } from '../usecases/articles';
+import { findrecommendArticles, findArticle } from '../usecases/articles';
 
 
 const router = Router();
@@ -21,11 +21,9 @@ router.get(
 )
 
 router.get(
-    '/search/:keyword',
+    '/:id',
     async (req:Request, res:Response) => {
-        const keyword = req.params.keyword;
-        const article = await findArticles(keyword as string);
-        console.log(keyword)
+        const article = await findArticle(req.params.id);
         res.json(article)
     }
 )

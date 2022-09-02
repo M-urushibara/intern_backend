@@ -68,6 +68,27 @@ export default class ArticleRepository{
     };
 
 
+   async findArticles(keyword: string){
+    const articles = await prisma.article.findMany({
+        where:{
+            product_name:{
+                contains: keyword,
+            },
+        },
+        take:10,
+        select: {
+            product_image_path: true,
+            created_at: true,
+            article_categories:{
+                select:{
+                    article_id: true,
+                },
+            },
+        },
+    });
+    return articles;
+   }
+
 };
 
 

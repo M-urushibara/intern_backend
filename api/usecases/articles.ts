@@ -2,10 +2,10 @@ import ArticleRepository from '../repositories/article'
 import { TimeLineArticle, Article, recommendArticles } from '../module/article_type';
 import { makeArticleJson } from '../module/article';
 const hoge = process.env.IMG_URL;
-const findArticles = async (category:string) => {
+
+const findrecommendArticles = async (category:string) => {
     const articleRepository = new ArticleRepository();
     const result: TimeLineArticle[] = [];
-
 
     if (category == 'recommend'){
         const recommendArticles = await articleRepository.findRecommend();
@@ -20,9 +20,6 @@ const findArticles = async (category:string) => {
         // const result = makeArticleJson(recommendArticles)
         return result
     }
-
-
-    
     const categoryArticles = await articleRepository.findCategoryRecommend(category);
     for (let articleElement of categoryArticles){
         const newArticleResult = new TimeLineArticle(
@@ -34,6 +31,7 @@ const findArticles = async (category:string) => {
     }
     return  result;
 }
+
 
 const findArticle = async (id: string) => {
     const articleRepository = new ArticleRepository();
@@ -52,4 +50,19 @@ const findArticle = async (id: string) => {
     }
 }
 
-export { findArticles, findArticle }
+const findArticles = async (keyword: string) => {
+    const articleRepository = new ArticleRepository();
+    const result: TimeLineArticle[] = [];
+    const articles = await articleRepository.findArticles(keyword);
+    console.log(articles)
+    for (let articleElement of articles){
+        const newArticleResult = new TimeLineArticle(
+            articleElement.article_categories[0].article_id,
+            hoge + articleElement.product_image_path,
+            articleElement.created_at
+        );
+        result.push(newArticleResult);
+    }
+    return result;
+}
+export { findrecommendArticles, findArticle, findArticles }
