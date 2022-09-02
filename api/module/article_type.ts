@@ -1,3 +1,5 @@
+import internal from "stream";
+
 export class TimeLineArticle {
     constructor(
         public article_id: number, 
@@ -8,9 +10,15 @@ export type recommendArticles = {
         product_image_path: string,
         article_categories: {article_id: number},
         created_at: Date,
-}[]
+}[];
+
+
 export type Article = {
-        [key: string]: any;
+        product_name: string,
+        product_price: number,
+        product_image_path: string,
+        product_explain_text: string,
+        official_link: string
 };
 
 // export type ArticleJson = {

@@ -18,6 +18,7 @@ model User {
 
 }
 
+
 model Article {
   id                    Int                 @id @default(autoincrement())
   product_image_path    String              @unique
@@ -43,6 +44,7 @@ model Article_category {
   article               Article?             @relation(fields: [article_id], references: [id])
   category              M_category?          @relation(fields: [category_id],references: [id])
   @@id([article_id,  category_id])
+
 }
 
 
